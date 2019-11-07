@@ -243,6 +243,7 @@ def template_init(
     from renku.core.commands.init import (
         fetch_remote_template,
         validate_template,
+        create_from_template
     )
 
     if not client.use_external_storage:
@@ -270,7 +271,7 @@ def template_init(
 
         message = f'Initialize new Renku repository...'
         click.echo(message, nl=False)
-        # init_repository(ctx, client, force, description)
+        create_from_template(template_path, client, name, description, force)
         click.echo('TO BE IMPLEMENTED')
 
     # ? uncomment for printing arguments

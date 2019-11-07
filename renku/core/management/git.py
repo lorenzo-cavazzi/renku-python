@@ -229,6 +229,7 @@ class GitCore:
             pass
 
     @contextmanager
+    # ? commit
     def commit(
         self,
         author_date=None,
@@ -361,6 +362,7 @@ class GitCore:
         from renku.core.utils.contexts import Isolation
 
         delete = path is None
+        # ? tempfile
         path = path or tempfile.mkdtemp()
         branch_name = branch_name or 'renku/run/isolation/' + uuid.uuid4().hex
 
