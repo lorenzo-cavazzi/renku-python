@@ -389,7 +389,6 @@ FORMATS = {
     'dot-full': dot_full,
     'dot-landscape': dot_landscape,
     'dot-full-landscape': dot_full_landscape,
-    'dot-debug': dot_debug,
     'json-ld': jsonld,
     'json-ld-graph': jsonld_graph,
     'Makefile': makefile,
