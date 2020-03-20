@@ -48,6 +48,9 @@ CACHE_UPLOADS_PATH.mkdir(parents=True, exist_ok=True)
 CACHE_PROJECTS_PATH = Path(CACHE_DIR) / Path('projects')
 CACHE_PROJECTS_PATH.mkdir(parents=True, exist_ok=True)
 
+CACHE_PROJECTS_TEMPLATES = Path(CACHE_DIR) / Path('templates')
+CACHE_PROJECTS_TEMPLATES.mkdir(parents=True, exist_ok=True)
+
 TAR_ARCHIVE_CONTENT_TYPE = 'application/x-tar'
 ZIP_ARCHIVE_CONTENT_TYPE = 'application/zip'
 

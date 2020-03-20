@@ -235,6 +235,7 @@ def test_file_upload_with_users(svc_client):
     assert 0 < file['file_size']
 
 
+# HERE - EXAMPLE
 @pytest.mark.service
 @pytest.mark.integration
 @flaky(max_runs=10, min_passes=1)
