@@ -19,20 +19,23 @@
 from pathlib import Path
 
 import pytest
-from tests.core.commands.test_init import TEMPLATE_ID, TEMPLATE_INDEX, \
-    TEMPLATE_REF, TEMPLATE_URL
 
 from renku.cli import cli
 from renku.cli.init import create_template_sentence
+from renku.core.utils.templates import TEMPLATE
 
-INIT = ['init', 'test-new-project', '--template-id', TEMPLATE_ID]
+INIT = ['init', 'test-new-project', '--template-id', TEMPLATE['DEFAULT']['ID']]
 INIT_REMOTE = [
-    '--template-source', TEMPLATE_URL, '--template-ref', TEMPLATE_REF
+    '--template-source', TEMPLATE['URL'], '--template-ref',
+    TEMPLATE['DEFAULT']['INDEX']
 ]
 INIT_FORCE = ['--force']
 INIT_VARIABLES = ['--template-variables']
-INIT_INDEX = ['init', 'test-new-project-2', '--template-index', TEMPLATE_INDEX]
-INIT_ID = ['--template-id', TEMPLATE_ID]
+INIT_INDEX = [
+    'init', 'test-new-project-2', '--template-index',
+    TEMPLATE['DEFAULT']['INDEX']
+]
+INIT_ID = ['--template-id', TEMPLATE['DEFAULT']['ID']]
 LIST_TEMPLATES = ['--list-templates']
 
 
@@ -65,7 +68,7 @@ def test_list_templates(isolated_runner):
     result = isolated_runner.invoke(cli, INIT + LIST_TEMPLATES)
     assert 0 == result.exit_code
     assert not new_project.exists()
-    assert TEMPLATE_ID in result.output
+    assert TEMPLATE['DEFAULT']['ID'] in result.output
 
 
 def test_init(isolated_runner):
