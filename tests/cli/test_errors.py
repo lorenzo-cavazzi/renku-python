@@ -20,7 +20,7 @@ import sys
 import tempfile
 
 import pytest
-from tests.core.commands.test_init import TEMPLATE_ID
+from renku.core.utils.templates import TEMPLATE
 
 from renku.cli import cli
 
@@ -80,7 +80,7 @@ def test_cli_initialization_err(cmd, runner):
         ['storage', '--help'],
         ['update', '--help'],
         ['workflow', '--help'],
-        ['init', '--template-id', TEMPLATE_ID, '--force'],
+        ['init', '--template-id', TEMPLATE['DEFAULT']['ID'], '--force'],
         ['init', '--help'],
         ['help'],
         ['--help'],
