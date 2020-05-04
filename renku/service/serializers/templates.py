@@ -25,9 +25,9 @@ from renku.service.serializers.rpc import JsonRPCResponse
 class ManifestTemplatesRequest(Schema):
     """Request schema for listing manifest templates."""
 
-    # url = fields.String(required=True)
-    # ref = fields.String(missing='master')
-    project_id = fields.String(required=True)
+    url = fields.String(required=True)
+    ref = fields.String(missing='master')
+    # project_id = fields.String(required=True)
 
 
 class ManifestTemplateSchema(Schema):

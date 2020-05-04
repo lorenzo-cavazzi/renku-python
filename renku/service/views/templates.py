@@ -25,6 +25,7 @@ from renku.service.config import SERVICE_PREFIX
 from renku.service.serializers.templates import ManifestTemplatesRequest, \
     ManifestTemplatesResponseRPC
 from renku.service.views import result_response
+from renku.service.views.cache import _project_clone
 from renku.service.views.decorators import accepts_json, handle_base_except, \
     handle_git_except, handle_renku_except, handle_validation_except, \
     header_doc, requires_cache, requires_identity
