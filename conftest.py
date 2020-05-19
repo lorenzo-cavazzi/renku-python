@@ -941,6 +941,14 @@ def svc_client_with_templates(svc_client, mock_redis, authentication_headers):
                 'accept': 'application/json',
             }
         },
+        {
+            'url': '/templates.create_project',
+            'allowed_method': 'POST',
+            'headers': {
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
+            }
+        },
     ]
 )
 def service_allowed_endpoint(request, svc_client, mock_redis):

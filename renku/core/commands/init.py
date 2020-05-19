@@ -24,6 +24,7 @@ from pathlib import Path
 import git
 import yaml
 
+from .client import pass_local_client
 from renku.core import errors
 from renku.core.management.config import RENKU_HOME
 
@@ -168,3 +169,26 @@ def create_from_template(
         with client.with_metadata(name=name) as project_metadata:
             client.import_from_template(template_path, metadata, force)
             project_metadata.updated = datetime.now(timezone.utc)
+
+
+# @pass_local_client(
+#     clean=False,
+#     commit=True,
+#     # commit_only=DATASET_METADATA_PATHS,
+#     commit_empty=False,
+#     raise_if_empty=True
+# )
+@pass_local_client  # (commit_message='test service')
+def create_from_template_local(
+    client,
+    template_path,
+    name,
+    metadata={},
+):
+    create_from_template(
+        template_path=template_path,
+        client=client,
+        name=name,
+        metadata=metadata,
+        force=False
+    )

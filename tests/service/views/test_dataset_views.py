@@ -290,6 +290,7 @@ def test_add_file_view_with_no_identity(svc_client_with_repo):
 @pytest.mark.service
 @pytest.mark.integration
 @flaky(max_runs=30, min_passes=1)
+# THIS to test dataset.add
 def test_add_file_view(svc_client_with_repo):
     """Check adding of uploaded file to dataset."""
     svc_client, headers, project_id, _ = svc_client_with_repo
