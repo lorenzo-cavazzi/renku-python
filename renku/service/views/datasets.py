@@ -129,6 +129,7 @@ def list_dataset_files_view(user, cache):
 @accepts_json
 @requires_cache
 @requires_identity
+# GOOD EXAMPLE for project init
 def add_file_to_dataset_view(user_data, cache):
     """Add the uploaded file to cloned repository."""
     ctx = DatasetAddRequest().load(request.json)

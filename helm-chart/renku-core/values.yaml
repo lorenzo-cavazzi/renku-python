@@ -16,8 +16,8 @@ cleanupProjectsTTL: 1800
 logLevel: WARNING
 
 image:
-  repository: renku/renku-core
-  tag: 'latest'
+  repository: lorenzocavazzitech/renku-core
+  tag: '0.10.4-e8226c3'
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []

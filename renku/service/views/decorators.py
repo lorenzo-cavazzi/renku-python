@@ -17,6 +17,7 @@
 # limitations under the License.
 """Renku service view decorators."""
 from functools import wraps
+import re
 
 from flask import jsonify, request
 from flask_apispec import doc
@@ -139,12 +140,17 @@ def handle_git_except(f):
             error_code = GIT_ACCESS_DENIED_ERROR_CODE \
                 if 'Access denied' in e.stderr else GIT_UNKNOWN_ERROR_CODE
 
+            # strip oauth tokens
+            error_reason = format(' '.join(e.stderr.strip().split('\n')))
+            error_reason_safe = re.sub(
+                "^(.+)(oauth2:)(.+)(@)(.+)$", r"\1\2<token-hidden>\4\5",
+                error_reason
+            )
+
             return jsonify(
                 error={
                     'code': error_code,
-                    'reason':
-                        'git error: {0}'.
-                        format(' '.join(e.stderr.strip().split('\n'))),
+                    'reason': f'git error: {error_reason_safe}'
                 }
             )
 

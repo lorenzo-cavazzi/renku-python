@@ -24,6 +24,7 @@ from pathlib import Path
 import git
 import yaml
 
+from .client import pass_local_client
 from renku.core import errors
 from renku.core.management.config import RENKU_HOME
 
@@ -159,12 +160,37 @@ def read_template_manifest(folder, checkout=False):
 
 
 def create_from_template(
-    template_path, client, name=None, metadata={}, force=None
+    template_path,
+    client,
+    name=None,
+    metadata={},
+    force=None,
+    user=None,
+    commit_message=None
 ):
     """Initialize a new project from a template."""
-    with client.commit():
-        client.init_repository(force)
+    with client.commit(commit_message=commit_message):
+        client.init_repository(force, user)
         metadata['name'] = name
         with client.with_metadata(name=name) as project_metadata:
             client.import_from_template(template_path, metadata, force)
             project_metadata.updated = datetime.now(timezone.utc)
+
+
+@pass_local_client
+def create_from_template_local(
+    client,
+    template_path,
+    name,
+    metadata={},
+    user=None
+):
+    create_from_template(
+        template_path=template_path,
+        client=client,
+        name=name,
+        metadata=metadata,
+        force=False,
+        user=user,
+        commit_message='From service'
+    )
